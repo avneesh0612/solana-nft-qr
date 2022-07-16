@@ -1,0 +1,19 @@
+{
+  "name": "Pink Circle",
+  "symbol": "CIRCLE",
+  "image": "6.png",
+  "properties": {
+    "files": [
+      {
+        "uri": "6.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": [
+      {
+        "address": "2R4bHmSBHkHAskerTHE6GE1Fxbn31kaD5gHqpsPySVd7",
+        "share": 100
+      }
+    ]
+  }
+}

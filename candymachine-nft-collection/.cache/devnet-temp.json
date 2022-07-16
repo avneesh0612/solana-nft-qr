@@ -1,0 +1,70 @@
+{
+  "program": {
+    "uuid": "Bfo2wF",
+    "candyMachine": "Bfo2wFFYx9vPn8eip1gnJ3kabs7CktW3pJ9iRq26SRmj"
+  },
+  "items": {
+    "0": {
+      "link": "https://arweave.net/twOcIEAS7zFdPswJ7XYNpULpK3LV1BAc9_mQeK8N4P8",
+      "name": "Green Star",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "1": {
+      "link": "https://arweave.net/1XCAnOuOpZCh7hiv3VO09JVgT42uBgvainROTWaeap0",
+      "name": "Blue Star",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "2": {
+      "link": "https://arweave.net/qQ_mZQXPk2EiSNIFk-7hENByS47MDSdi8Le7oy7S8TM",
+      "name": "Yellow Star",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "3": {
+      "link": "https://arweave.net/K28jGs1DoULqNVOhZWQqY82lrbbaRP1lQZhNKBLwQo4",
+      "name": "Pink Star",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "4": {
+      "link": "https://arweave.net/AgVbCR0-ZcHumqI0PUWnrPi-2BZ-jay2R00mZWak-rc",
+      "name": "Blue Circle",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "5": {
+      "link": "https://arweave.net/EqK5tE-8L19IEtfc095Ms9KE-brSD7yyO55LiDb12J0",
+      "name": "Yellow Circle",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "6": {
+      "link": "https://arweave.net/741X2Noi9ApWR1NWe6BnwInETwkO5spvHutANcprYQY",
+      "name": "Pink Circle",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "7": {
+      "link": "https://arweave.net/ThNm0aVzjsjS9hOM73OJ6nv70wnscX5FCoVVyci5ncI",
+      "name": "Green Circle",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "8": {
+      "link": "https://arweave.net/N0PmXHl_A02Egua07o1jQG2I19EYVE_0UewWM_pzioI",
+      "name": "Blue Rectangle",
+      "onChain": true,
+      "verifyRun": false
+    },
+    "9": {
+      "link": "https://arweave.net/G7aB8yHStWe4iOk6YrLa80xbW7OhJy5ELjgqlkmwmDY",
+      "name": "Yellow Rectangle",
+      "onChain": true,
+      "verifyRun": false
+    }
+  },
+  "env": "devnet",
+  "cacheName": "temp"
+}

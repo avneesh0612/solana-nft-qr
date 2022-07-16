@@ -1,0 +1,20 @@
+{
+  "name": "Green Star",
+  "symbol": "STAR",
+  "image": "0.png",
+  "properties": {
+    "files": [
+      {
+        "uri": "0.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": [
+      {
+        "address": "2R4bHmSBHkHAskerTHE6GE1Fxbn31kaD5gHqpsPySVd7",
+        "share": 100
+      }
+    ]
+  }
+}
+

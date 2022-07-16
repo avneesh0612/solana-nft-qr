@@ -1,0 +1,19 @@
+{
+  "name": "Yellow Rectangle",
+  "symbol": "RECT",
+  "image": "9.png",
+  "properties": {
+    "files": [
+      {
+        "uri": "9.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": [
+      {
+        "address": "2R4bHmSBHkHAskerTHE6GE1Fxbn31kaD5gHqpsPySVd7",
+        "share": 100
+      }
+    ]
+  }
+}
