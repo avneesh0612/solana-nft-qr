@@ -4,7 +4,7 @@ In this guide, I am going to show you how to build an NFT collection where users
 
 # What is CandyPay?
 
-CandyPay is a tool that lets you create a headless mint experience for your Solana collection, which let users mint NFTs just by scanning a QR code, directly from mobile wallets. You can reach out to [CandyPay on Twitter](https://twitter.com/candypayfun).
+CandyPay is a tool that lets you create a headless mint experience for your Solana collection, which let users mint NFTs just by scanning a QR code, directly from their mobile wallets. You can reach out to [CandyPay on Twitter](https://twitter.com/candypayfun).
 
 # What is candy machine?
 
@@ -22,13 +22,13 @@ We are going to need the Solana CLI so install it using the steps [here](https:/
 
 Metaplex is a Solana-powered protocol that allows for the creation and minting of non-fungible tokens, auctions, and visualizing NFTs in a standard way across wallets and applications, comprised of two core components: an on-chain program, and a self-hosted front-end web2 application.
 
-Clone the metaplex repo:
+1. Cloning metaplex's git repo:
 
 ```
 git clone -b v1.1.1 https://github.com/metaplex-foundation/metaplex.git
 ```
 
-Installing JavaScript SDK dependencies:
+2. Installing JavaScript SDK dependencies:
 
 ```
 yarn install --cwd ~/metaplex/js/ --network-timeout 600000
@@ -47,7 +47,7 @@ ts-node ~/metaplex/js/packages/CLI/src/candy-machine-v2-CLI.ts --version
 We are going to work on devnet, so switch the network by running this command:
 
 ```
-Solana config set --url devnet
+solana config set --url devnet
 ```
 
 ### Generating a new keypair
@@ -55,23 +55,23 @@ Solana config set --url devnet
 We need to generate a new wallet that can be used to deploy our NFT collection and do some other stuff so, run this command:
 
 ```
-Solana-keygen new --outfile ~/.config/Solana/id.json
+solana-keygen new --outfile ~/.config/Solana/id.json
 ```
 
 ### Setting the keypair
 
-We need to set this keypair so Solana CLI knows which keypair to use:
+We need to globally configure this keypair so that Solana CLI will know which keypair to use while signing the transactions:
 
 ```
-Solana config set --keypair ~/.config/Solana/id.json
+solana config set --keypair ~/.config/solana/id.json
 ```
 
 ### Confirming that the keypair was set
 
-To confirm that the key pair was set you can simply run the Solana get command and if there is a keypair it will show you the path to it:
+To confirm that the key pair was set you can simply run the `solana config get` command and if there is a keypair, it will show you the path to it:
 
 ```
-Solana config get
+solana config get
 ```
 
 ## Airdropping some $SOL
@@ -79,12 +79,12 @@ Solana config get
 For making transactions on the blockchain, we need some $SOL to pay for the gas. The Solana CLI lets you airdrop some tokens so run this command:
 
 ```
-Solana airdrop 1
+solana airdrop 1
 ```
 
 # Creating Solana NFT Collection using Metaplex
 
-We are now going to create an NFT collection which we will sell. So, create a new folder. You can call it anything you like! After creating the folder, open it in your favourite code editor. Let's now create another folder called `assets`. We will add the images and JSON metadata files to this folder. The images should be named as `0.png`, `1.png`, `2.png`, etc. The JSON files should also be named in the same pattern and the file number will correspond to the image. This is a sample JSON file-
+We are now going to create an NFT collection which we will sell. So, create a new folder. You can call it anything you like! After creating the folder, open it in your favourite code editor. Let's now create another folder called `assets`. We will add the images and JSON metadata files to this folder. The images should be named as `0.png`, `1.png`, `2.png`, etc. The JSON files should also be named in the same pattern and the file number will correspond to the image. Here is a sample JSON file-
 
 ```
 {
@@ -108,7 +108,7 @@ We are now going to create an NFT collection which we will sell. So, create a ne
 }
 ```
 
-Now, in the root of the folder create a new file named `config.json`. This will be the config data for our collection. This is a sample for the config file-
+Now, in the root of the folder create a new file named `config.json`. This will be the config data for our collection. Here is a sample for the config file-
 
 ```
 {
@@ -131,30 +131,30 @@ Now, in the root of the folder create a new file named `config.json`. This will 
 }
 ```
 
-You need to edit the solTreasuryAccount, goLiveDate, number, and price.
+You need to edit the `solTreasuryAccount`, `goLiveDate`, `number`, and `price` fields.
 
 ## Deploying the collection
 
 Once you are done with all the config, run this command to deploy your collection:
 
 ```
-ts-node ~/metaplex/js/packages/CLI/src/candy-machine-v2-CLI.ts upload -e devnet -k ~/.config/Solana/id.json -cp config.json ./assets
+ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts upload -e devnet -k ~/.config/solana/id.json -cp config.json ./assets
 ```
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1657974859565/vsyJUjzny.png align="left")
 
-Once this command finishes running you will see a new `.cache` folder. It should have a `devnet-temp.json` file. This file contains data related to the NFT collection that has just been deployed. We are going to need the **candyMachine** Id inside the "program" object to mint these NFTs.
+Once the NFT collection gets deployed, you will see a new `.cache` folder. It should have a `devnet-temp.json` file. This file contains data related to the NFT collection that has just been deployed. We are going to need the `candyMachine` ID inside the "program" object to mint these NFTs via CandyPay.
 
 # Creating our website with CandyPay and Next.js
 
-We are going to create a simple website using CandyPay and Next.js which will let users scan a QR code and mint the amazing NFTs! There are 2 ways to implement this, using the CandyPay public API is comparatively easier but it is in private beta so you would need to fill up a form to get a bearer token. You can fill out [this form](https://tally.so/r/wzxrP0) to get the API keys.
+We are going to create a simple website using CandyPay and Next.js which will let users scan a QR code and mint the amazing NFTs! There are 2 ways to implement this, using the CandyPay public API is comparatively easier but it is in private-beta so you would need to fill up a form to get a bearer token. You can fill out [this form](https://tally.so/r/wzxrP0) to get the API keys.
 
 ## Setting up a new Next.js app
 
 I am going to use create-next-app to set up a new Next.js app:
 
 ```
-npx create-next-app Solana-qr-blog --ts
+npx create-next-app solana-qr-blog --ts
 ```
 
 This will create a new next app for us. Let's now install the packages that we are going to use:
@@ -169,9 +169,9 @@ yarn add @candypay/sdk @solana/pay @solana/web3.js axios # yarn
 
 I will first show you how to create this website by using the CandyPay Public API. At the time of writing this, you need api keys and you can get them by filling out the form linked above. If you don't want to wait or build a custom api then you can skip to the next section!
 
-### Building an api to create the QR
+### Building an API to create the QR
 
-Since the API keys should be a secret I am going to create a new file in `pages/api` called `get-qr.ts`, this will send a solanaUrl to the frontend that can be used for creating a QR code:
+Since the API keys shouldn't be exposed on the client side, I am going to create a new file in `pages/api` called `get-qr.ts`, this will return `solanaUrl` (This is a solana protocoal encoded URL which is used by the Solana mobile wallets to send requests to CandyPay's server. More about it over here -- https://docs.candypay.fun/#how-does-candypay-work) to the frontend that can be used for creating a QR code:
 
 ```
 import axios from "axios";
@@ -198,11 +198,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 export default handler;
 ```
 
-Update the candyMachineID here with your candyMachineId and you can update the message as well. As you can see I am using env variables for the BEARER_TOKEN. So, create a new `.env.local` file and add this variable. The value will be the API keys that you got from candy pay!
+Update the candyMachineID here with your candyMachineId and you can update the message as well. As you can see I am using env variables for the BEARER_TOKEN. So, create a new `.env.local` file and add this variable. The value will be the API keys that you got from CandyPay's public API!
 
-### Calling the api from the frontend
+The `/generate` route of CandyPay's public API has much more parameters than just `candyMachineID` and `message`. Here is the list of all the parameters which is accepted by the `/generate` route -- https://docs.candypay.fun/routes/generate-qr-code#request-body
 
-Create a new function called `generateQRCode` and it will be making a simple api call to the api that we just created and we will use Solana Pay's createQR function to generate a QR code:
+### Calling the API from the frontend
+
+Create a new function called `generateQRCode` and it will be making a simple API call to the api that we just created and we will use `@solana/pay` package's `createQR` function to render the QR code:
 
 ```
   const generateQRCode = async () => {
@@ -240,13 +242,13 @@ You will now be able to see a QR code in the centre of your screen!
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1657976943577/ImAC6YsoA.png align="left")
 
-This QR code can't be used in localhost as it uses `http` and Solana Pay requires you to use `https` for security reasons. So you can test it out with [ngrok](https://ngrok.com/) or just deploy it using vercel or any hosting service you like! Once you have done this you can download the [Solflare](https://solflare.com/) mobile app and scan this QR code to mint your NFT! It was as simple as this 🎉
+You can install [Solflare](https://solflare.com/) mobile app and scan this QR code to mint your NFT! It was as simple as this 🎉
 
-## Using a custom API with the SDK
+## Using CandyPay's SDK
 
 ### Creating the frontend
 
-We first need to create an object with some data, so add this object at the top of the page:
+We first need to create the URL params which would be encoded into the solana protocal URL, so add this object at the top of the page:
 
 ```
 const urlParams: TransactionRequestURLFields = {
@@ -256,7 +258,7 @@ const urlParams: TransactionRequestURLFields = {
 };
 ```
 
-Here as you can see we need to add three things- a URL, a label and a message. In the url, I have added an env variable so you can add your domain easily and change it based on different environments. And as you can see it is an api route so we will create the mint api in just a while! In the label, I have added a simple text and the message is an image of candy in my case, feel free to change it.
+Here as you can see we need to add three things - a URL, a label and a message. In the URL, I have added an env variable called "NEXT_PUBLIC_URL" so you can add your domain and change it easily based on different environments. And as you can see it is an API route, so we will create the mint API in just a while! In the label, I have added a simple text and the message is an image of candy in my case, feel free to change it.
 
 Create a ref for storing the Solana QR code using the `useRef` hook:
 
@@ -358,6 +360,10 @@ We are now ready to use this app and sell our NFTs! 🙌
 
 This QR code can't be used in localhost as it uses `http` and Solana Pay requires you to use `https` for security reasons. So you can test it out with [ngrok](https://ngrok.com/) or just deploy it using vercel or any hosting service you like! Once you have done this you can download the [Solflare](https://solflare.com/) mobile app and scan this QR code to mint your NFT! It was as simple as this 🎉
 
+Here is a brief description on how does this entire stuff actually work 👀 - 
+
+Solflare would first decodes the solana protocol encoded URL from the QR code. It would then send a `GET` request to that decoded URL to fetch the metadata (label and icon). After fetching the metadata, it would send a `POST` request to the same decoded URL along with the user's public key in request body. Our custom API would then respond with a serialized transaction which would then decoded by Solflare and simulates the transaction to the user. More about it over here -- https://docs.candypay.fun/#how-does-candypay-work
+
 # Conclusion
 
 ## Credits
@@ -365,3 +371,7 @@ This QR code can't be used in localhost as it uses `http` and Solana Pay require
 Huge shout out to [Mukesh](https://twitter.com/Mukesh_272921) (Core backend engineer of the CandyPay team) for helping me out with Solana and CandyPay!
 
 ## Useful links
+
+- CandyPay Docs: https://docs.candypay.fun/
+- Solana Pay Docs: https://docs.solanapay.com/
+
