@@ -362,7 +362,7 @@ This QR code can't be used in localhost as it uses `http` and Solana Pay require
 
 Here is a brief description on how does this entire stuff actually work 👀 - 
 
-Solflare would first decodes the solana protocol encoded URL from the QR code. It would then send a `GET` request to that decoded URL to fetch the metadata (label and icon). After fetching the metadata, it would send a `POST` request to the same decoded URL along with the user's public key in request body. Our custom API would then respond with a serialized transaction which would then decoded by Solflare and simulates the transaction to the user. More about it over here -- https://docs.candypay.fun/#how-does-candypay-work
+Solflare would first decode the solana protocol encoded URL from the QR code. It would then send a `GET` request to that decoded URL to fetch the metadata (label and icon). After fetching the metadata, it would send a `POST` request to the same decoded URL along with the user's public key in request body. Our custom API would then respond with a serialized transaction which would then be decoded by Solflare and simulates the transaction to the user. More about it over here -- https://docs.candypay.fun/#how-does-candypay-work
 
 # Conclusion
 
